@@ -1,0 +1,330 @@
+---
+# Only the main Sass file needs front matter (the dashes are enough)
+---
+
+$base-font-size: 17px !default;
+$base-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+@import "minima";
+
+html {
+  height: 100%;
+  padding-bottom: 1px;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.site-header {
+    border-top: 5px solid $brand-color;
+    border-bottom: none;
+    padding: $spacing-unit * 1.5;
+    padding-bottom: $spacing-unit / 2;
+    min-height: $spacing-unit * 1.865;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  
+    // Positioning context for the mobile navigation icon
+    position: relative;
+  
+  
+    .wrapper {
+      max-width: 100%;
+      margin-right: 0;
+      margin-left: 0;
+      padding-right: $spacing-unit/2;
+      padding-left: $spacing-unit/2;
+      @extend %clearfix;
+  
+      @include media-query($on-laptop) {
+        max-width: -webkit-calc(#{$content-width} - (#{$spacing-unit}));
+        max-width:         calc(#{$content-width} - (#{$spacing-unit}));
+        padding-right: $spacing-unit / 2;
+        padding-left: $spacing-unit / 2;
+      }
+    }
+}
+
+.site-title:before {
+    content: "◉";
+    padding-right: $base-font-size;
+}
+
+sup.new {
+  padding: 2.5px 5px;
+  margin: 0 5px;
+  background: $brand-color;
+  border-radius: 7.5px;
+  color: rgb(255, 255, 255);
+  font-size: 0.6em;
+  text-transform: uppercase;
+}
+
+// Book Covers
+
+.book-info {
+  min-width: 0.2 * $content-width;
+  width: 25%;
+  padding-left: $spacing-unit / 2;
+  padding-bottom: $spacing-unit / 2;
+  float: right;
+
+  @include media-query($on-palm) {
+    float: none;
+    margin: auto;
+  }
+}
+
+// Home Page
+
+ul.post-list li {
+  ul, ol {
+    margin-bottom: $spacing-unit / 2;
+  }
+}
+
+// Archive
+
+div.archive h2 {
+  margin-left: -3.5em;
+  margin-top: 0;
+  float: left;
+}
+@media screen and (max-width: $content-width + 2 * 3.5 * 26) {
+  div.archive h2 {
+    margin-left: 0;
+    margin-top: $spacing-unit;
+    float: none;
+  }
+}
+
+
+// Post Styling
+
+table tr:first-child td {
+  font-weight: bold;
+}
+
+li > ul, li > ol {
+  margin-bottom: $spacing-unit / 2;
+}
+
+.post h2 {
+  margin-top: $spacing-unit;
+  @include relative-font-size(1.625);
+
+  @include media-query($on-laptop) {
+    @include relative-font-size(1.375);
+  }
+}
+
+.glossary .post-content > ul {
+  margin-left: 0em;
+  margin-bottom: 0em;
+}
+
+ul.post-list li ul li {
+  list-style-type: disc;
+
+  ul {
+    margin-top: $spacing-unit / 2;
+  }
+
+  ul > li {
+    list-style-type: circle;
+  }
+}
+
+article.post ul li {
+  list-style-type: disc;
+
+  ul {
+    margin-top: $spacing-unit / 2;
+  }
+
+  ul > li {
+    list-style-type: circle;
+  }
+}
+
+div.footnotes {
+  font-size: $small-font-size;
+  border-top: 1px solid $grey-color-light;
+  padding-top: $spacing-unit;
+  margin-top: $spacing-unit;
+
+  ol {
+    margin-left: 1.5em;
+  }
+
+  p {
+    margin-bottom: 0;
+  }
+
+  ol > li {
+    margin-bottom: $spacing-unit / 2;
+  }
+
+  ol > li:last-child {
+    margin-bottom: 0;
+  }
+
+  ol ul {
+    margin-left: 1.25em;
+    margin-bottom: 0;
+  }
+}
+
+.center {
+  display: block !important;
+  text-align: center;
+}
+
+.center-image {
+  display: block;
+  margin: 0 auto;
+  width: 55%;
+}
+
+hr {
+  padding: 0;
+  margin: $spacing-unit 0;
+  border: none;
+  border-top: 1px solid $grey-color-light;
+}
+
+code {
+  font-family: 'Consolas', 'Courier New', Courier, monospace;
+}
+
+div.cards code.highlighter-rouge {
+  background-color: lighten($brand-color, 40%);
+}
+
+// Maths
+
+.MJXc-display {
+  width: 100%;
+  height: 100%;
+}
+
+.theorem {
+  font: $base-font-weight #{$base-font-size}/#{$base-line-height} $base-font-family;
+  color: $text-color;
+  border-left: 1px solid $grey-color-light;
+  padding-left: $spacing-unit / 2;
+  margin-left: 0;
+  letter-spacing: 0;
+
+  h3 {
+    padding-top: 0;
+    font: 17px/1.5;
+  }
+}
+
+.theorem blockquote {
+  font: $base-font-weight #{$base-font-size}/#{$base-line-height} $base-font-family;
+  color: $text-color;
+  border: none;
+  padding-left: $spacing-unit / 2;
+  margin-left: 0;
+  margin-top: $spacing-unit;
+  letter-spacing: 0;
+
+  p:first-of-type {
+    text-indent: -$spacing-unit / 2;
+  }
+}
+
+h3#theorem {
+  padding-top: 0;
+  font-size: 1.25em;
+}
+
+table.cayley-table {
+  width: 6em;
+  margin-left: auto;
+  margin-right: auto;
+
+  td {
+    width: 2em;
+    text-align: center;
+  }
+}
+
+table.number-triangle {
+  width: 50%;
+  margin: 0 auto;
+  margin-bottom: 15px;
+  border: none;
+
+  td {
+    padding: 5px 5px;
+    text-align: center;
+    border: none;
+  }
+
+  tr {
+    background: transparent;
+    border-top: 1px solid $grey-color-light;
+  }
+
+  tr:last-child {
+    border-bottom: 1px solid $grey-color-light;
+  }
+}
+
+.glossary div.item {
+  color: #111;
+  border: none;
+  font-size: $base-font-size;
+  letter-spacing: normal;
+  font-style: normal;
+  padding-left: $spacing-unit;
+  margin-top: $spacing-unit / 2;
+
+  h2 {
+    margin-top: 0;
+    text-indent: -$spacing-unit;
+  }
+}
+
+.glossary div.item > p:first-of-type {
+  display: inline;
+  margin-bottom: $spacing-unit;
+}
+
+.glossary div.item > p:first-of-type:after {
+  content: " ";
+  display: block;
+  margin-bottom: $spacing-unit / 2;
+}
+
+.glossary div.item:first-child {
+  margin-top: 0;
+}
+
+.glossary h2 {
+  display: inline-block;
+  font-size: 0.8em;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-top: $spacing-unit / 2;
+  margin-bottom: 0;
+  color: darken($brand-color, 20%);
+}
+
+.glossary h2:after {
+  content: ".";
+}
+
+.glossary h3 {
+  font-size: $base-font-size;
+  font-style: italic;
+  display: inline-block;
+  margin: 0;
+}
+
+.glossary h3:after {
+  content: ":";
+}
