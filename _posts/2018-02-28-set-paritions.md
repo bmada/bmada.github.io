@@ -207,61 +207,31 @@ To get an idea of how the algorithm works, we can apply it to the set `♢` `♣
 
 An implementation of the algorithm in Python is below (adapted from [here](https://stackoverflow.com/a/30134039/)).
 
-
-<figure class="highlight">
-  <pre><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">partition</span><span class="p">(</span><span class="nb">set</span><span class="p">):</span>
-    <span class="c"># partition the singleton set</span>
-    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="nb">set</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-        <span class="k">yield</span> <span class="p">[</span><span class="nb">set</span><span class="p">]</span>
-        <span class="k">return</span>
+{% highlight python %}
+def partition(set):
+    # partition the singleton set
+    if len(set) == 1:
+        yield [set]
+        return
     
-    <span class="c"># remove the last element</span>
-    <span class="n">last_element</span> <span class="o">=</span> <span class="p">[</span><span class="nb">set</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span>
-    <span class="n">remaining_elements</span> <span class="o">=</span> <span class="nb">set</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    # remove the last element
+    last_element = [set[-1]]
+    remaining_elements = set[:-1]
 
-    <span class="c"># partition the remaining elements</span>
-    <span class="k">for</span> <span class="n">subpartition</span> <span class="ow">in</span> <span class="n">partition</span><span class="p">(</span><span class="n">remaining_elements</span><span class="p">):</span>
-        <span class="c"># add the last element to each set in the existing partition</span>
-        <span class="k">for</span> <span class="n">n</span><span class="p">,</span> <span class="n">subset</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">subpartition</span><span class="p">):</span>
-            <span class="k">yield</span> <span class="p">[</span><span class="n">subset</span> <span class="o">+</span> <span class="n">last_element</span><span class="p">]</span> <span class="o">+</span> <span class="n">subpartition</span><span class="p">[:</span><span class="n">n</span><span class="p">]</span> <span class="o">+</span> <span class="n">subpartition</span><span class="p">[</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">:]</span>
+    # partition the remaining elements
+    for subpartition in partition(remaining_elements):
+        # add the last element to each set in the existing partition
 
-        <span class="c"># add the last element in its own set</span>
-        <span class="k">yield</span> <span class="n">subpartition</span> <span class="o">+</span> <span class="p">[</span><span class="n">last_element</span><span class="p">]</span>
+        for n, subset in enumerate(subpartition):
+            yield [subset + last_element] + subpartition[:n] + subpartition[n+1:]
 
-<span class="c"># run the algorithm</span>
-<span class="k">for</span> <span class="n">partition</span> <span class="ow">in</span> <span class="n">partition</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]):</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">partition</span><span class="p">)</span></code></pre>
-</figure>
+        # add the last element in its own set
+        yield subpartition + [last_element]
 
-
-    def partition(set):
-        # partition the singleton set
-
-        if len(set) == 1:
-            yield [set]
-            return
-        
-        # remove the last element
-
-        last_element = [set[-1]]
-        remaining_elements = set[:-1]
-
-        # partition the remaining elements
-
-        for subpartition in partition(remaining_elements):
-            # add the last element to each set in the existing partition
-
-            for n, subset in enumerate(subpartition):
-                yield [subset + last_element] + subpartition[:n] + subpartition[n+1:]
-
-            # add the last element in its own set
-
-            yield subpartition + [last_element]
-
-    # run the algorithm
-
-    for partition in partition([1, 2, 3, 4]):
-        print(partition)
+# run the algorithm
+for partition in partition([1, 2, 3, 4]):
+    print(partition)
+{% endhighlight %}
 
 
 When run, it produces the following output.
