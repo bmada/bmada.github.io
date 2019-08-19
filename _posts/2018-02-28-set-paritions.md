@@ -208,15 +208,15 @@ To get an idea of how the algorithm works, we can apply it to the set `♢` `♣
 An implementation of the algorithm in Python is below (adapted from [here](https://stackoverflow.com/a/30134039/)).
 
 {% highlight python %}
-def partition(set):
+def partition(elements):
     # partition the singleton set
-    if len(set) == 1:
-        yield [set]
+    if len(elements) == 1:
+        yield [elements]
         return
     
     # remove the last element
-    last_element = [set[-1]]
-    remaining_elements = set[:-1]
+    last_element = [elements[-1]]
+    remaining_elements = elements[:-1]
 
     # partition the remaining elements
     for subpartition in partition(remaining_elements):
